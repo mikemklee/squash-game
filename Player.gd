@@ -22,3 +22,13 @@ func _physics_process(delta):
     if direction != Vector3.ZERO:
         direction = direction.normalized()
         $Pivot.look_at(translation + direction, Vector3.UP)
+
+    # ground velocity
+    velocity.x = direction.x * speed
+    velocity.z = direction.z * speed
+
+    # vertical velocity
+    velocity.y -= fall_acceleration * delta
+
+    # move
+    velocity = move_and_slide(velocity, Vector3.UP)
