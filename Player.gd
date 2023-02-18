@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal hit
+
 export var speed = 14
 
 export var fall_acceleration = 75
@@ -31,12 +33,12 @@ func _physics_process(delta):
     velocity.x = direction.x * speed
     velocity.z = direction.z * speed
 
-    # vertical velocity
-    velocity.y -= fall_acceleration * delta
-
     # jump
     if is_on_floor() and Input.is_action_just_pressed("jump"):
         velocity.y += jump_impulse
+
+    # vertical velocity
+    velocity.y -= fall_acceleration * delta
 
     # move
     velocity = move_and_slide(velocity, Vector3.UP)
@@ -53,3 +55,12 @@ func _physics_process(delta):
                 # If so, we squash it and bounce.
                 mob.squash()
                 velocity.y = bounce_impulse
+
+
+func die():
+    emit_signal("hit")
+    queue_free()
+
+
+func _on_MobDetector_body_entered(body:Node):
+	die()
