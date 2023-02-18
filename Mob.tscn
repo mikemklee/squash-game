@@ -14,3 +14,7 @@ extents = Vector3( 0.814787, 0.645381, 0.99243 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367444, 0 )
 shape = SubResource( 1 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339494, 0.339494 )
+aabb = AABB( -1.38061, -0.74123, -1.8163, 2.76122, 1.48246, 3.63259 )
