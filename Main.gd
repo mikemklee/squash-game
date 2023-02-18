@@ -30,5 +30,5 @@ func _on_Player_hit():
 	$UserInterface/Retry.show()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept") and $UserInterface/Retry.visible:
+	if event.is_action_pressed("retry") and $UserInterface/Retry.visible:
 		get_tree().reload_current_scene()
